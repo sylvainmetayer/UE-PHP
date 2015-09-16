@@ -20,7 +20,7 @@ if (isset($_POST['choix'])) {
 $req = "SELECT prenom_client, mail_client FROM CLIENT where no_client=$idClient";
 $resu = mysqli_query($db, $req);
 if ($resu==false) {
-  echo "<b>Erreur lors du chargement des donn&eacute;es !</b>";
+  echo "<p><b>Erreur lors du chargement des donn&eacute;es !</b></p>\n";
 } else {
 $ligne = mysqli_fetch_array($resu, MYSQL_ASSOC);
 $prenom = $ligne['prenom_client'];
@@ -34,13 +34,13 @@ $mail = $ligne['mail_client'];
   <label for="prenom">Prenom</label>
   <input type="text" name="prenom" value="<?php echo $prenom; ?>"><br/>
 
-  <input type="hidden" name="numero" value="<?php echo $idClient ?>">
+  <input type="hidden" name="numero" value="<?php echo $idClient ?>"><br/>
 
   <label for="mail">Mail</label>
   <input type="mail" name="mail" value="<?php echo $mail; ?>"><br/>
 
-  <input type="submit" value="OK">
-  <input type="reset" value="Effacer">
+  <input type="submit" value="OK"><br/>
+  <input type="reset" value="Effacer"><br/>
 </form>
 <?php } ?>
 </body>
