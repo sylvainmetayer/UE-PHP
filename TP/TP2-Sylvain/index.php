@@ -1,21 +1,18 @@
-<?php session_start();
-//Non stylisé
-?>
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang='fr'>
 <head>
 <meta charset="utf-8"/>
 <title>Détails Commande </title>
+<link href="css/exo2.css" rel="stylesheet" type="text/css"/>
 </head>
 
 <body>
-
-<h1>Détails commande  </h1>
+  <h1>Détails commande  </h1>
 <?php
 $db = mysqli_connect("localhost", "bd", "bede");
 mysqli_select_db($db, "tp1");
 ?>
-
 <?php if (empty($_POST['no_client']) && empty($_POST['no_commande']) && empty($_POST['no_article'])) {
   //CAS CLIENT ?>
   <form action='#' method="post">
@@ -24,10 +21,11 @@ mysqli_select_db($db, "tp1");
       <?php
       $sql = "SELECT no_client, nom_client FROM CLIENT";
       $resu = mysqli_query($db,$sql);
+      echo "\n";
       while ($ligne = mysqli_fetch_array($resu, MYSQL_ASSOC)) {
-        ?><option value="<?php echo $ligne['no_client']; ?>"> <?php echo $ligne['nom_client']; ?> </option> <?php echo "\n";
+        echo "\t\t"; ?><option value="<?php echo $ligne['no_client']; ?>"> <?php echo $ligne['nom_client']; ?> </option> <?php echo "\n";
       }
-      ?>
+      echo "\n"; ?>
     </select>
     <input type="submit" value="Valider">
   </form>
@@ -52,10 +50,11 @@ mysqli_select_db($db, "tp1");
       $sql = "SELECT no_commande FROM COMMANDE where no_client = ".$_POST['no_client'];
       //echo $sql;
       $resu = mysqli_query($db,$sql);
+      echo "\n";
       while ($ligne = mysqli_fetch_array($resu, MYSQL_ASSOC)) {
-        ?><option value="<?php echo $ligne['no_commande']; ?>"> <?php echo $ligne['no_commande']; ?> </option> <?php echo "\n";
+        echo "\t\t"; ?><option value="<?php echo $ligne['no_commande']; ?>"> <?php echo $ligne['no_commande']; ?> </option> <?php echo "\n";
       }
-      ?>
+      echo "\n"; ?>
     </select>
 
     <input type="submit" value="Valider">
@@ -71,7 +70,6 @@ mysqli_select_db($db, "tp1");
     $no_client = $_POST['no_client_cache'];
     $no_commande = $_POST['no_commande'];
     ?>
-
     <input type="hidden" name="nom_client_cache" value="<?php echo $clientNom; ?>">
     <input type="hidden" name="no_client_cache" value="<?php echo $no_client; ?>">
     <input type="hidden" name="no_commande_cache" value="<?php echo $no_commande; ?>">
@@ -82,12 +80,13 @@ mysqli_select_db($db, "tp1");
     <select name="no_article">
       <?php
       $sql = "SELECT no_article FROM detail_cde WHERE no_commande= '$no_commande'";
-      echo $sql;
+      //echo $sql;
       $resu = mysqli_query($db,$sql);
+      echo "\n";
       while ($ligne = mysqli_fetch_array($resu, MYSQL_ASSOC)) {
-        ?><option value="<?php echo $ligne['no_article']; ?>"> <?php echo $ligne['no_article']; ?> </option> <?php echo "\n";
+        echo "\t\t"; ?><option value="<?php echo $ligne['no_article']; ?>"> <?php echo $ligne['no_article']; ?> </option> <?php echo "\n";
       }
-      ?>
+      echo "\n"; ?>
     </select>
 
     <input type="submit" value="Valider">
@@ -113,11 +112,13 @@ mysqli_select_db($db, "tp1");
     $sql = "SELECT a.no_article, lib_article, qte_cdee, qte_livree FROM ARTICLE a JOIN DETAIL_CDE d on a.no_article=d.no_article WHERE a.no_article= $no_article";
     //echo $sql;
     $resu = mysqli_query($db,$sql);
-    $ligne = mysqli_fetch_array($resu, MYSQL_ASSOC);
 
+    if ($resu==null) {
+      ?> <p> <strong>Erreur lors de l'affichage du produit. Merci de recommencer </strong> </p> <?php
+    } else {
+      $ligne = mysqli_fetch_array($resu, MYSQL_ASSOC);
     //var_dump($ligne);
     ?>
-
     <table>
       <tr>
         <td>Num article</td>
@@ -134,8 +135,9 @@ mysqli_select_db($db, "tp1");
     </table>
 
   </form>
-
+<?php  }?>
   <a href="index.php">Une autre recherche ?</a>
+
 <?php } //FIN AFFICHAGE FINAL ?>
 
 </body>

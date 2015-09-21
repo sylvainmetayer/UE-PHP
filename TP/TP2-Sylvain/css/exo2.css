@@ -1,0 +1,9 @@
+table { border-collapse : collapse;}
+th,td { border : 2px solid black;
+width: 200px;
+height: 50px;
+text-align: center;
+}
+tr {
+background-color: lightblue;
+}
