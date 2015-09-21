@@ -34,7 +34,7 @@
   //CAS INTERMEDIAIRE ?>
   <form action='#' method="post">
     <?php
-    $sql = "SELECT nom_cons FROM constructeur WHERE no_cons='".$_POST['cons']."'";;
+    $sql = "SELECT nom_cons FROM constructeur WHERE no_cons='".$_POST['cons']."'";
     $resu = mysqli_query($db,$sql);
     $ligne = mysqli_fetch_array($resu, MYSQL_ASSOC);
     $constructeurNom = $ligne['nom_cons'];
@@ -61,7 +61,7 @@
   //CAS FINAL ?>
   <form action='#' method="post">
     <?php
-    $sql = "SELECT desi_impr FROM IMPRIMANTE WHERE no_impr='".$_POST['imp']."'";;
+    $sql = "SELECT desi_impr FROM IMPRIMANTE WHERE no_impr='".$_POST['imp']."'";
     $resu = mysqli_query($db,$sql);
     $ligne = mysqli_fetch_array($resu, MYSQL_ASSOC);
     $imprimanteNom = $ligne['desi_impr'];
