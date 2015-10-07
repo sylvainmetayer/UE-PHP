@@ -27,6 +27,6 @@ define('AJOUTER_CITATION', 5);
 define('LISTER_CITATIONS', 6);
 define('AJOUTER_VILLE', 7);
 define('LISTER_VILLES', 8);
-define('',9)
+define('CONNEXION',9);
 
 ?>

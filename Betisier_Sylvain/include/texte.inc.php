@@ -70,8 +70,9 @@ case LISTER_VILLES:
 //
 
 //
-case 9:
-	// inclure ici la page ....
+case CONNEXION:
+	// inclure ici la page de connexion
+		include('pages/connexion.inc.php');
     break;
 case 10:
 	// inclure ici la page....
