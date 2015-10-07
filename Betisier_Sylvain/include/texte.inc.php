@@ -10,36 +10,46 @@ switch ($page) {
 // Personnes
 //
 
-case 0:
+case ACCUEIL:
 	// inclure ici la page accueil photo
 	include_once('pages/accueil.inc.php');
 	break;
-case 1:
+case AJOUT_PERSONNE:
 	// inclure ici la page insertion nouvelle personne
 	include("pages/ajouterPersonne.inc.php");
     break;
 
-case 2:
+case LISTER_PERSONNES:
 	// inclure ici la page liste des personnes
-	include_once('pages/listerPersonnes.inc.php');
+	try {
+			include_once('pages/listerPersonnes.inc.php');
+	} catch (ExceptionPerso $e) {
+			?>
+			<h3 class='erreur'> <?php echo $e->getMessage(); ?> <h3>
+			<p>
+				<a href="index.php?page=<?php echo LISTER_PERSONNES; ?>"> <b>Lister à nouveau ?</b> </a>
+			</p>
+		 <?php
+	}
+
     break;
-case 3:
+case MODIFIER_PERSONNE:
 	// inclure ici la page modification des personnes
 	include("pages/ModifierPersonne.inc.php");
     break;
-case 4:
+case SUPPRIMER_PERSONNE:
 	// inclure ici la page suppression personnes
 	include_once('pages/supprimerPersonne.inc.php');
     break;
 //
 // Citations
 //
-case 5:
+case AJOUTER_CITATION:
 	// inclure ici la page ajouter citations
     include("pages/ajouterCitation.inc.php");
     break;
 
-case 6:
+case LISTER_CITATIONS:
 	// inclure ici la page liste des citations
 	include("pages/listerCitation.inc.php");
     break;
@@ -47,12 +57,12 @@ case 6:
 // Villes
 //
 
-case 7:
+case AJOUTER_VILLE:
 	// inclure ici la page ajouter ville
 	include("pages/ajouterVille.inc.php");
     break;
 
-case 8:
+case LISTER_VILLES:
 // inclure ici la page lister  ville
 	include("pages/listerVilles.inc.php");
     break;

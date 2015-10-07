@@ -23,44 +23,32 @@ class Citation {
 		foreach ( $donnees as $attribut => $valeurs ) {
 			switch ($attribut) {
 				case 'cit_num' :
-          if (!is_numeric($valeurs)) {
-						throw new ExceptionPerso("Le numero de la citation doit etre numérique.", ERR_NUMERIC);
-          }
 					$this->setCitationNum ( $valeurs );
 					break;
 				case 'per_num' :
-					if (!is_numeric($valeurs)) {
-						throw new ExceptionPerso("Le numero de la personne doit etre numérique.", ERR_NUMERIC);
-					}
 					$this->setCitationPerNum ( $valeurs );
 					break;
 				case 'per_num_valide':
-					if (!is_numeric($valeurs)) {
-						throw new ExceptionPerso("Le numero de la personne doit etre numérique.", ERR_NUMERIC);
-					}
 					$this->setCitationPerNumValide ( $valeurs );
 					break;
 				case 'per_num_etu':
-					if (!is_numeric($valeurs)) {
-						throw new ExceptionPerso("Le numero de la personne etudiant doit etre numérique.", ERR_NUMERIC);
-					}
 					$this->setCitationPerNumEtu ( $valeurs );
 					break;
 				case 'cit_libelle':
 					// Penser aux controle dans le manager !!
-					$this->setCitationLibelle();
+					$this->setCitationLibelle($valeurs);
 					break;
 				case 'cit_date':
-					$this->setCitationDate();
+					$this->setCitationDate($valeurs);
 					break;
 				case 'cit_valide':
-					$this->setCitationValide();
+					$this->setCitationValide($valeurs);
 					break;
 				case 'cit_date_valide':
-					$this->setCitationDateValide();
+					$this->setCitationDateValide($valeurs);
 					break;
 				case 'cit_date_depo':
-					$this->setCitationDateDepot();
+					$this->setCitationDateDepot($valeurs);
 					break;
 			}
 		}
@@ -79,6 +67,9 @@ class Citation {
 	}
 
 	public function setCitationNum($valeur) {
+		if (!is_numeric($valeur)) {
+			throw new ExceptionPerso("Le numero de la citation doit etre numérique.", ERR_NUMERIC);
+		}
 		$this->cit_num = $valeur;
 	}
 
@@ -95,6 +86,9 @@ class Citation {
 	}
 
 	public function setCitationPerNum($valeur) {
+		if (!is_numeric($valeur)) {
+			throw new ExceptionPerso("Le numero de la personne doit etre numérique.", ERR_NUMERIC);
+		}
 		$this->per_num = $valeur;
 	}
 
@@ -111,6 +105,9 @@ class Citation {
 	}
 
 	public function setCitationPerNumEtu($valeur) {
+		if (!is_numeric($valeur)) {
+			throw new ExceptionPerso("Le numero de la personne etudiant doit etre numérique.", ERR_NUMERIC);
+		}
 		$this->per_num_etu = $valeur;
 	}
 
@@ -127,6 +124,9 @@ class Citation {
 	}
 
 	public function setCitationPerNumValide($valeur) {
+		if (!is_numeric($valeur)) {
+			throw new ExceptionPerso("Le numero de la personne doit etre numérique.", ERR_NUMERIC);
+		}
 		$this->per_num_valide = $valeur;
 	}
 
@@ -136,6 +136,10 @@ class Citation {
 
 	public function setCitationLibelle($valeur) {
 		$this->cit_libelle = $valeur;
+	}
+
+	public function getCitationLibelle() {
+		return $this->cit_libelle;
 	}
 }
 /* Fin Citation.class.php */

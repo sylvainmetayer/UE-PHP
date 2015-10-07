@@ -17,4 +17,16 @@ Définitions personnelles
 //Gestion des erreurs
 define('ERR_NUMERIC', 0);
 
+//Menu, pour une meilleur compréhension.
+define('ACCUEIL', 0);
+define('AJOUT_PERSONNE', 1);
+define('LISTER_PERSONNES', 2);
+define('MODIFIER_PERSONNE', 3);
+define('SUPPRIMER_PERSONNE', 4);
+define('AJOUTER_CITATION', 5);
+define('LISTER_CITATIONS', 6);
+define('AJOUTER_VILLE', 7);
+define('LISTER_VILLES', 8);
+define('',9)
+
 ?>

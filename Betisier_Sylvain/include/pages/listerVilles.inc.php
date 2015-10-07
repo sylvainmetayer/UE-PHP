@@ -2,12 +2,11 @@
 $pdo = new Mypdo();
 $villeManager = new VilleManager($pdo);
 $villes = $villeManager->getAllVilles();
-$nbVilles = $villeManager->getNbVilles();
 ?>
 
 	<h1>Liste des villes</h1>
 
-	<p> Actuellement, <?php echo $nbVilles; ?> villes sont enregistrées. </p>
+	<p> Actuellement, <?php echo count($villes); ?> villes sont enregistrées. </p>
 
 	<table>
 		<tr>
