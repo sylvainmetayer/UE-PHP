@@ -9,11 +9,11 @@ class Salarie extends Personne {
   */
   public function __construct($valeurs = array()) {
   //  var_dump($valeurs);
-    parent::__construct($valeurs);
+
     if (! empty ( $valeurs )) {
+      parent::affecte($valeurs);
       $this->affecte ( $valeurs );
     }
-    var_dump($this);
   }
 
   public function affecte($donnees) {

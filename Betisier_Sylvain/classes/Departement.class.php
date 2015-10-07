@@ -41,7 +41,7 @@ class Departement {
     $this->dep_nom = $dep_nom;
   }
 
-  public function getDepom() {
+  public function getDepNom() {
     return $this->dep_nom;
   }
 

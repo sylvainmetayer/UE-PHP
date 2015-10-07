@@ -14,7 +14,7 @@ class EtudiantManager {
     $requete = $this->db->prepare($sql);
     $requete->execute();
 
-    $ligne = $requete->fetch(PDO::FETCH_OBJ));
+    $ligne = $requete->fetch(PDO::FETCH_OBJ);
     $personne = new Etudiant($ligne);
 
     $requete->closeCursor();

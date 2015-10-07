@@ -6,17 +6,18 @@ $personnes = $personneManager->getAllPersonnes();
 
 
 
-<?php if ($personnes == null) { // Pas de personnes enregistrées
-		?>
-		<p> D&eacute;sol&eacute;, aucune personne n'est enregistr&eacute;e. <br /> <strong> <a href='index.php?page=<?php echo AJOUT_PERSONNE; ?>'>Ajouter une personne ?</a></strong>
-		<?php
-	} else { // Des personnes sont enregistrées ?>
-		<p> Actuellement, <?php echo count($personnes); ?> personnes sont enregistr&eacute;es. </p>
-	<?php }
+<?php
 	if (empty ( $_GET ['id'] )) {
 		//id non renseigné, on affiche toutes les personnes.
 		?>
 			<h1>Liste des personnes enregistrées</h1>
+			<?php if ($personnes == null) { // Pas de personnes enregistrées
+					?>
+					<p> D&eacute;sol&eacute;, aucune personne n'est enregistr&eacute;e. <br /> <strong> <a href='index.php?page=<?php echo AJOUT_PERSONNE; ?>'>Ajouter une personne ?</a></strong>
+					<?php
+				} else { // Des personnes sont enregistrées ?>
+					<p> Actuellement, <?php echo count($personnes); ?> personnes sont enregistr&eacute;es. </p>
+				<?php } ?>
 		<table>
 			<tr>
 				<th>Numero</th>
@@ -60,7 +61,7 @@ $personnes = $personneManager->getAllPersonnes();
 				$fonction = $fonctionManager->getFonctionLibelle($detailPersonne->getFonNum());
 				?> <h1> D&eacute;tail sur le salari&eacute; <?php echo $detailPersonne->getPerNom(); ?> </h1><?php
 			}
-			var_dump($detailPersonne);
+			//var_dump($detailPersonne);
 			?>
 			<table>
 				<tr>

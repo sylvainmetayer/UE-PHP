@@ -15,7 +15,7 @@ class Personne {
   Constructeur
   */
   public function __construct($valeurs = array()) {
-    var_dump($valeurs);
+    //var_dump($valeurs);
     if (! empty ( $valeurs )) {
       $this->affecte ( $valeurs );
     }

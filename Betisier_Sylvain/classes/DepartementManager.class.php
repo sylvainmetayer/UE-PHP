@@ -13,7 +13,7 @@ class DepartementManager {
     $requete = $this->db->prepare($sql);
     $requete->execute();
 
-    $ligne = $requete->fetch(PDO::FETCH_ASSOC));
+    $ligne = $requete->fetch(PDO::FETCH_ASSOC);
 
     $requete->closeCursor();
     return $ligne;

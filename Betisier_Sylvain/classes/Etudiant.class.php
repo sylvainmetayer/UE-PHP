@@ -8,10 +8,11 @@ class Etudiant extends Personne {
   Constructeur
   */
   public function __construct($valeurs = array()) {
-    parent::__construct;
-    if (! empty ( $valeurs )) {
-      $this->affecte ( $valeurs );
-    }
+    //  var_dump($valeurs);
+      if (! empty ( $valeurs )) {
+        parent::affecte($valeurs);
+        $this->affecte ( $valeurs );
+      }
   }
 
   public function affecte($donnees) {
@@ -29,27 +30,27 @@ class Etudiant extends Personne {
 	}
 
   public function getPerNum(){
-		return $this->perNum;
+		return $this->per_num;
 	}
 
 	public function setPerNum($perNum){
-		$this->perNum = $perNum;
+		$this->per_num = $perNum;
 	}
 
 	public function getDepNum(){
-		return $this->depNum;
+		return $this->dep_num;
 	}
 
 	public function setDepNum($depNum){
-		$this->depNum = $depNum;
+		$this->dep_num = $depNum;
 	}
 
 	public function getDivNum(){
-		return $this->divNum;
+		return $this->div_num;
 	}
 
 	public function setDivNum($divNum){
-		$this->divNum = $divNum;
+		$this->div_num = $divNum;
 	}
 
 }
