@@ -66,17 +66,18 @@ case 9:
 case 10:
 	// inclure ici la page....
     break;
-    
+
 case 11:
 	// inclure ici la page...
     break;
 
 case 12:
 	// inclure ici la page...
-    break;    
-    
+    break;
+
 default : 	include_once('pages/accueil.inc.php');
+//TODO inclure page erreur 404
 }
-	
+
 ?>
 </div>
