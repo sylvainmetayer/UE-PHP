@@ -20,13 +20,12 @@ $voteManager = new VoteManager($pdo);
 		</tr>
 		<?php
 		foreach ($citations as $citation) {
-			//var_dump($citation);
-			$detailsNomPrenom = $personneManager->getNomPersonne($citation->getCitationPerNum());
+			$detailsPersonne = $personneManager->getPersonne($citation->getCitationPerNum());
 			?> <tr>
-					<td> <?php echo $detailsNomPrenom['nom']." ". $detailsNomPrenom['prenom']; ?> </td>
+					<td> <?php echo $detailsPersonne->getPerNom()." ". $detailsPersonne->getPerPrenom(); ?> </td>
 					<td> <?php echo $citation->getCitationLibelle(); ?> </td>
 					<td> <?php echo $citation->getCitationDate(); ?> </td>
-					<td> <?php echo $voteManager->getMoyenneVote($citation->getCitationNum()); //TODO point de maintenance ? ?> </td>
+					<td> <?php echo $voteManager->getMoyenneVote($citation->getCitationNum());?> </td>
 				</tr>
 		<?php } ?>
 	</table>

@@ -10,18 +10,20 @@ class Personne {
   private $per_login;
   private $per_pwd;
 
+	private $ctrlSaisie;
 
   /*
   Constructeur
   */
   public function __construct($valeurs = array()) {
-    //var_dump($valeurs);
     if (! empty ( $valeurs )) {
       $this->affecte ( $valeurs );
     }
+    //unset($this->ctrlSaisie);
   }
 
   public function affecte($donnees) {
+    $this->ctrlSaisie = new ControleurSaisie();
     foreach ( $donnees as $attribut => $valeurs ) {
       switch ($attribut) {
         case 'per_num' :
@@ -57,9 +59,9 @@ class Personne {
 	}
 
 	public function setPerNum($perNum){
-    if (!is_numeric($perNum)) {
-			throw new ExceptionPerso("Le numero de la personne doit etre numérique.", ERR_NUMERIC);
-		}
+    if (!$this->ctrlSaisie->isCorrectEntier($perNum)) {
+      throw new ExceptionPerso(ControleurSaisie::ERR_NUMERIC_LIBELLE, ControleurSaisie::ERR_NUMERIC);
+    }
 		$this->per_num = $perNum;
 	}
 
@@ -84,6 +86,9 @@ class Personne {
 	}
 
 	public function setPerTel($perTel){
+    if (!$this->ctrlSaisie->isCorrectNumeroDeTelephone($perTel)) {
+			throw new ExceptionPerso(ControleurSaisie::ERR_TEL_LIBELLE, ControleurSaisie::ERR_TEL);
+		}
 		$this->per_tel = $perTel;
 	}
 

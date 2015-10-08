@@ -2,14 +2,18 @@
 class Fonction {
 	private $fon_num;
 	private $fon_libelle;
+	
+	private $ctrlSaisie;
 
   /*
   Constructeur
   */
 	public function __construct($valeurs = array()) {
+		$this->ctrlSaisie = new ControleurSaisie();
 		if (! empty ( $valeurs )) {
 			$this->affecte ( $valeurs );
 		}
+		unset($this->ctrlSaisie);
 	}
 
 	public function affecte($donnees) {
@@ -26,6 +30,9 @@ class Fonction {
 	}
 
   public function setFonNum($fon_num) {
+		if (!$this->ctrlSaisie->isCorrectEntier($perNum)) {
+      throw new ExceptionPerso(ControleurSaisie::ERR_NUMERIC_LIBELLE, ControleurSaisie::ERR_NUMERIC);
+    }
     $this->fon_num = $fon_num;
   }
 

@@ -3,14 +3,19 @@ class Departement {
 	private $dep_num;
 	private $dep_nom;
   private $vil_num;
+	
+	private $ctrlSaisie;
 
   /*
   Constructeur
   */
 	public function __construct($valeurs = array()) {
 		if (! empty ( $valeurs )) {
+			$this->ctrlSaisie = new ControleurSaisie();
+			var_dump($this->ctrlSaisie);
 			$this->affecte ( $valeurs );
 		}
+		unset($this->ctrlSaisie);
 	}
 
 	public function affecte($donnees) {
@@ -30,6 +35,9 @@ class Departement {
 	}
 
   public function setDepNum($dep_num) {
+		if (!$this->ctrlSaisie->isCorrectEntier($dep_num)) {
+			throw new ExceptionPerso(ControleurSaisie::ERR_NUMERIC_LIBELLE, ControleurSaisie::ERR_NUMERIC);
+		}
     $this->dep_num = $dep_num;
   }
 
@@ -46,6 +54,9 @@ class Departement {
   }
 
   public function setVilNum($vil_num) {
+		if (!$this->ctrlSaisie->isCorrectEntier($vil_num)) {
+			throw new ExceptionPerso(ControleurSaisie::ERR_NUMERIC_LIBELLE, ControleurSaisie::ERR_NUMERIC);
+		}
     $this->vil_num = $vil_num;
   }
 

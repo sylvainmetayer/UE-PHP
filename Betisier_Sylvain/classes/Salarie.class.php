@@ -4,22 +4,23 @@ class Salarie extends Personne {
   private $sal_telprof;
   private $fon_num;
 
+  private $ctrlSaisie;
+
   /*
   Constructeur
   */
   public function __construct($valeurs = array()) {
-  //  var_dump($valeurs);
-
     if (! empty ( $valeurs )) {
+      $this->ctrlSaisie = new ControleurSaisie();
       parent::affecte($valeurs);
       $this->affecte ( $valeurs );
     }
+    unset($this->ctrlSaisie);
   }
 
   public function affecte($donnees) {
 		foreach ( $donnees as $attribut => $valeurs ) {
 			switch ($attribut) {
-        //TODO Logiquement, A VERIFIER, per_num devrait être géré par le Constructeur parent (Personne)
 				case 'sal_telprof' :
           $this->setSalTelprof ( $valeurs );
 					break;
@@ -35,6 +36,9 @@ class Salarie extends Personne {
 	}
 
 	public function setPerNum($perNum){
+    if (!$this->ctrlSaisie->isCorrectEntier($perNum)) {
+      throw new ExceptionPerso(ControleurSaisie::ERR_NUMERIC_LIBELLE, ControleurSaisie::ERR_NUMERIC);
+    }
 		$this->per_num = $perNum;
 	}
 
@@ -43,7 +47,10 @@ class Salarie extends Personne {
 	}
 
 	public function setSalTelprof($salTelprof){
-		$this->sal_telprof = $salTelprof;
+    if (!$this->ctrlSaisie->isCorrectNumeroDeTelephone($salTelprof)) {
+      throw new ExceptionPerso(ControleurSaisie::ERR_TEL_LIBELLE, ControleurSaisie::ERR_TEL);
+    }
+    $this->sal_telprof = $salTelprof;
 	}
 
 	public function getFonNum(){
@@ -51,6 +58,9 @@ class Salarie extends Personne {
 	}
 
 	public function setFonNum($fonNum){
-		$this->fon_num = $fonNum;
+    if (!$this->ctrlSaisie->isCorrectEntier($fonNum)) {
+      throw new ExceptionPerso(ControleurSaisie::ERR_NUMERIC_LIBELLE, ControleurSaisie::ERR_NUMERIC);
+    }
+    $this->fon_num = $fonNum;
 	}
 }

@@ -1,6 +1,6 @@
 <?php
 //TODO changer tout mes query en prepare
-class EtudiantManager {
+class EtudiantManager extends PersonneManager {
   private $db;
 
   public function __construct($db) {

@@ -1,5 +1,5 @@
 <?php
-class MonException extends Exception
+class ExceptionPerso extends Exception
 {
   public function __construct($message, $code = 0)
   {

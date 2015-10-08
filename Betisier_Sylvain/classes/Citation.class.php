@@ -10,13 +10,18 @@ class Citation {
 	private $cit_date_valide;
 	private $cit_date_depo;
 
+	public $ctrlSaisie;
+
   /*
   Constructeur
   */
 	public function __construct($valeurs = array()) {
 		if (! empty ( $valeurs )) {
+			$this->ctrlSaisie = new ControleurSaisie();
+			//var_dump($this->ctrlSaisie);
 			$this->affecte ( $valeurs );
 		}
+		unset($this->ctrlSaisie);
 	}
 
 	public function affecte($donnees) {
@@ -59,6 +64,9 @@ class Citation {
   */
 
 	public function setCitationDateValide($valeur) {
+		if (!$this->ctrlSaisie->isCorrectDate($valeur)) {
+				throw new ExceptionPerso(ControleurSaisie::ERR_DATE_LIBELLE, ControleurSaisie::ERR_DATE);
+		}
 		$this->cit_date_valide = $valeur;
 	}
 
@@ -67,8 +75,9 @@ class Citation {
 	}
 
 	public function setCitationNum($valeur) {
-		if (!is_numeric($valeur)) {
-			throw new ExceptionPerso("Le numero de la citation doit etre numérique.", ERR_NUMERIC);
+		//var_dump($this->ctrlSaisie);
+		if (!$this->ctrlSaisie->isCorrectEntier($valeur)) {
+			throw new ExceptionPerso(ControleurSaisie::ERR_NUMERIC_LIBELLE, ControleurSaisie::ERR_NUMERIC);
 		}
 		$this->cit_num = $valeur;
 	}
@@ -78,6 +87,9 @@ class Citation {
 	}
 
 	public function setCitationDate($valeur) {
+		if (!$this->ctrlSaisie->isCorrectDate($valeur)) {
+			throw new ExceptionPerso(ControleurSaisie::ERR_DATE_LIBELLE, ControleurSaisie::ERR_DATE);
+		}
 		$this->cit_date = $valeur;
 	}
 
@@ -86,8 +98,8 @@ class Citation {
 	}
 
 	public function setCitationPerNum($valeur) {
-		if (!is_numeric($valeur)) {
-			throw new ExceptionPerso("Le numero de la personne doit etre numérique.", ERR_NUMERIC);
+		if (!$this->ctrlSaisie->isCorrectEntier($valeur)) {
+			throw new ExceptionPerso(ControleurSaisie::ERR_NUMERIC_LIBELLE, ControleurSaisie::ERR_NUMERIC);
 		}
 		$this->per_num = $valeur;
 	}
@@ -105,8 +117,8 @@ class Citation {
 	}
 
 	public function setCitationPerNumEtu($valeur) {
-		if (!is_numeric($valeur)) {
-			throw new ExceptionPerso("Le numero de la personne etudiant doit etre numérique.", ERR_NUMERIC);
+		if (!$this->ctrlSaisie->isCorrectEntier($valeur)) {
+			throw new ExceptionPerso(ControleurSaisie::ERR_NUMERIC_LIBELLE, ControleurSaisie::ERR_NUMERIC);
 		}
 		$this->per_num_etu = $valeur;
 	}
@@ -116,6 +128,9 @@ class Citation {
 	}
 
 	public function setCitationDateDepot($valeur) {
+		if (!$this->ctrlSaisie->isCorrectDate($valeur)) {
+			throw new ExceptionPerso(ControleurSaisie::ERR_DATE_LIBELLE, ControleurSaisie::ERR_DATE);
+		}
 		$this->cit_date_depo = $valeur;
 	}
 
@@ -124,8 +139,8 @@ class Citation {
 	}
 
 	public function setCitationPerNumValide($valeur) {
-		if (!is_numeric($valeur)) {
-			throw new ExceptionPerso("Le numero de la personne doit etre numérique.", ERR_NUMERIC);
+		if (!$this->ctrlSaisie->isCorrectEntier($valeur)) {
+			throw new ExceptionPerso(ControleurSaisie::ERR_NUMERIC_LIBELLE, ControleurSaisie::ERR_NUMERIC);
 		}
 		$this->per_num_valide = $valeur;
 	}

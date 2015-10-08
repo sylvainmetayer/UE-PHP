@@ -26,7 +26,6 @@ $personnes = $personneManager->getAllPersonnes();
 			</tr>
 			<?php
 			foreach ($personnes as $personne) {
-				//var_dump($personne);
 				?> <tr>
 						<td> <b> <a href="index.php?page=<?php echo LISTER_PERSONNES; ?>&id=<?php echo  $personne->getPerNum(); ?>" > <?php echo $personne->getPerNum(); ?> </a> </b> </td>
 						<td> <?php echo $personne->getPerNom(); ?> </td>
@@ -61,7 +60,6 @@ $personnes = $personneManager->getAllPersonnes();
 				$fonction = $fonctionManager->getFonctionLibelle($detailPersonne->getFonNum());
 				?> <h1> D&eacute;tail sur le salari&eacute; <?php echo $detailPersonne->getPerNom(); ?> </h1><?php
 			}
-			//var_dump($detailPersonne);
 			?>
 			<table>
 				<tr>

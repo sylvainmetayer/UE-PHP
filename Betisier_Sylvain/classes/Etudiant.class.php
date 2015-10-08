@@ -4,21 +4,23 @@ class Etudiant extends Personne {
   private $dep_num;
   private $div_num;
 
+	private $ctrlSaisie;
+
   /*
   Constructeur
   */
   public function __construct($valeurs = array()) {
-    //  var_dump($valeurs);
-      if (! empty ( $valeurs )) {
-        parent::affecte($valeurs);
-        $this->affecte ( $valeurs );
-      }
+    if (! empty ( $valeurs )) {
+      $this->ctrlSaisie = new ControleurSaisie();
+      parent::affecte($valeurs);
+      $this->affecte ( $valeurs );
+    }
+    unset($this->ctrlSaisie);
   }
 
   public function affecte($donnees) {
 		foreach ( $donnees as $attribut => $valeurs ) {
 			switch ($attribut) {
-        //TODO Logiquement, A VERIFIER, per_num devrait être géré par le Constructeur parent (Personne)
 				case 'dep_num' :
           $this->setDepNum ( $valeurs );
 					break;
@@ -34,6 +36,9 @@ class Etudiant extends Personne {
 	}
 
 	public function setPerNum($perNum){
+    if (!$this->ctrlSaisie->isCorrectEntier($perNum)) {
+      throw new ExceptionPerso(ControleurSaisie::ERR_NUMERIC_LIBELLE, ControleurSaisie::ERR_NUMERIC);
+    }
 		$this->per_num = $perNum;
 	}
 
@@ -42,6 +47,9 @@ class Etudiant extends Personne {
 	}
 
 	public function setDepNum($depNum){
+    if (!$this->ctrlSaisie->isCorrectEntier($depNum)) {
+      throw new ExceptionPerso(ControleurSaisie::ERR_NUMERIC_LIBELLE, ControleurSaisie::ERR_NUMERIC);
+    }
 		$this->dep_num = $depNum;
 	}
 
@@ -50,6 +58,9 @@ class Etudiant extends Personne {
 	}
 
 	public function setDivNum($divNum){
+    if (!$this->ctrlSaisie->isCorrectEntier($divNum)) {
+      throw new ExceptionPerso(ControleurSaisie::ERR_NUMERIC_LIBELLE, ControleurSaisie::ERR_NUMERIC);
+    }
 		$this->div_num = $divNum;
 	}
 
