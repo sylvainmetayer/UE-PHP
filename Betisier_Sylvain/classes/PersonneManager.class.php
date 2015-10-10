@@ -14,19 +14,22 @@ class PersonneManager {
   Retourne true ou false selon que la connexion est autorisée ou non.
   */
   public function isConnexionAutorisee($login, $pwd) {
-    $sql = "SELECT per_login, per_pwd FROM PERSONNE WHERE per_login=:login AND per_pwd=:pwd";
-
+    //return true; //en attendant de fixer la connexion
+    $sql = "SELECT per_login, per_pwd FROM PERSONNE WHERE per_pwd='".(md5(md5($pwd).GRAIN_SEL)) ."' AND per_login='".$login."'"; //requete OK, testée PHPMyAdmin
     $requete = $this->db->prepare($sql);
-    $requete->bindValue(':login', $login);
-    $requete->bindValue(':pwd', $pwd);
-    $requete->execute();
 
-    echo $sql;
+    /*
+    //En attendant que le problème soit résolu, on passe ça en dur dans la requete... TODO fix bindValue
+    $pwdCrypte = (md5(md5($pwd).GRAIN_SEL));
+    //echo $pwdCrypte;
+    $requete->bindValue(':login', $login);
+    $requete->bindValue(':pwd', $pwdCrypte);
+    */
+    var_dump($requete);
+    $requete->execute();
 
     $resultat = $requete->fetch(PDO::FETCH_OBJ);
     $requete->closeCursor();
-    echo "<br/>DEBUG Affichage de personne dans isConnexionAutorisee : ";
-    var_dump($resultat);
     if ($resultat != NULL) {
       return true;
     } else {

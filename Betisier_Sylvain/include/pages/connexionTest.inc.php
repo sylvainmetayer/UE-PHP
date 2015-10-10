@@ -46,8 +46,9 @@ if (empty ( $_POST ['per_login'] ) || empty ( $_POST ['per_pwd'] ) || empty ( $_
     // détails de la connexion + verification connexion autorisée
   	$login = $_POST ['per_login'];
   	$pwd = $_POST ['per_pwd'];
-  	$connexionOK = $personneManager->isConnexionAutorisee ( $login, (sha1 ( sha1 ( $pwd ) . GRAIN_SEL )) );
-    echo " USER AUTORISE ?".$connexionOK."<br/>";
+  	$connexionOK = $personneManager->isConnexionAutorisee ( $login, $pwd);
+    echo "RESLuTAT OK ?";
+    var_dump($connexionOK);
 
 
   	if ($reponseUser != $resultat) {
@@ -81,12 +82,12 @@ if (empty ( $_POST ['per_login'] ) || empty ( $_POST ['per_pwd'] ) || empty ( $_
     	 }
 
        if (($connexionOK == true) && $captcha == true) {
-          // le captcha est bon et les id/mdp aussi
-          $personneConnecte = $personneManager->getPersonneByLogin($_POST ['per_login']);
-      		$_SESSION['personneConnectee'] = $personneConnecte;
-          unset($_SESSION['reponseCaptcha']); //on a plus besoin du captcha
+		// le captcha est bon et les id/mdp aussi
+			$personneConnecte = $personneManager->getPersonneByLogin($_POST ['per_login']);
+			$_SESSION['personneConnectee'] = $personneConnecte;
+			unset($_SESSION['reponseCaptcha']); //on a plus besoin du captcha
       		echo "DEBUG ";
-          var_dump($_SESSION['personneConnectee']);
+			var_dump($_SESSION['personneConnectee']);
       		?>
       		<p> Vous avez bien &eacute;t&eacute; connect&eacute; ! Redirection dans 2 secondes.. </p>
           <!-- TODO compteur js ?
