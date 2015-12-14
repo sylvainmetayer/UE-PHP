@@ -2,12 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>A </title>
+    <title>Wouhou, je génère des images ! </title>
+    <script type ="text/javascript"  src="image.js"></script>
 </head>
 <body>
+  <div>
+    <?php  $tel = "0643738482"; ?>
 
-  <?php
+    <input type="hidden" id="monSuperTexte" value="<?php echo $tel; ?>">
+    <img src="tel.png" id="affichTel" width=100 height=100 alt="Telephone" />
+  </div>
 
-//$_SESSION["texte"]="0643738482"; ?>
-<img src="image.php?text=0643738482" alt="a" />
 </body>

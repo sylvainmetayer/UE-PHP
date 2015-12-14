@@ -1,11 +1,11 @@
 <?php
-
-header("Content-type: image/png");
-$string = $_GET['text'];
-$im     = imagecreatefrompng("images/button1.png");
-$orange = imagecolorallocate($im, 220, 210, 60);
-$px     = (imagesx($im) - 7.5 * strlen($string)) / 2;
-imagestring($im, 3, $px, 9, $string, $orange);
-imagepng($im);
+header("Content-Type: image/png");
+$im = @imagecreatetruecolor (110, 20)
+    or die("Impossible d'initialiser la bibliothèque GD");
+$background_color = imagecolorallocate($im, 255, 255, 255);
+$text_color = imagecolorallocate($im, 135, 206, 235);
+imagestring($im, 1, 25, 5,  $_GET["num"], $text_color);
+imagepng($im, null, 9, PNG_ALL_FILTERS);
 imagedestroy($im);
+
 ?>
